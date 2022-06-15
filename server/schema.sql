@@ -1,23 +1,24 @@
 CREATE SCHEMA `sdc reviews`;
 
 CREATE TABLE `sdc reviews`.metas (
-	prod_id              INT  NOT NULL    PRIMARY KEY,
-	size_count           INT      ,
-	size_avg             INT      ,
-	length_count         INT      ,
-	length_avg           INT      ,
-	comfort_count        INT      ,
-	comfort_avg          INT      ,
-	fit_count            INT      ,
-	fit_avg              INT      ,
-	quality_avg          INT      ,
-	quality_count        INT      ,
-	review_count         INT      ,
-	ratings_1            INT      ,
-	ratings_2            INT      ,
-	ratings_3            INT      ,
-	ratings_4            INT      ,
-	ratings_5            INT
+	prod_id              integer  NOT NULL    PRIMARY KEY,
+	size_count           integer default 0      ,
+	size_id              integer default 0      ,
+	length_count         integer default 0      ,
+	length_id            integer default 0      ,
+	comfort_count        integer default 0      ,
+	comfort_id           integer default 0      ,
+	fit_count            integer default 0      ,
+	fit_id               integer default 0      ,
+	quality_count        integer default 0      ,
+	quality_id           integer default 0      ,
+	review_count         integer default 0      ,
+	recommend_count      integer default 0      ,
+	ratings_1            integer default 0      ,
+	ratings_2            integer default 0      ,
+	ratings_3            integer default 0      ,
+	ratings_4            integer default 0      ,
+	ratings_5            integer default 0
  );
 
 CREATE TABLE `sdc reviews`.photos (
@@ -49,3 +50,9 @@ CREATE TABLE `sdc reviews`.reviews (
 	CONSTRAINT fk_reviews_photos FOREIGN KEY ( id ) REFERENCES `sdc reviews`.photos( reviews_id ) ON DELETE NO ACTION ON UPDATE NO ACTION
  ) engine=InnoDB;
 
+CREATE TABLE `Reviews Data Migration`.characteristics (
+	id                   INT  NOT NULL    PRIMARY KEY,
+	product_id           INT  NOT NULL,
+	name                 INT
+)
+/COPY `Reviews Data Migration`.characteristics FROM `documents/SDC DATA/characteristic_reviews.csv` DELIMITER ',' CSV HEADER;
