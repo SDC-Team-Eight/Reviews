@@ -111,5 +111,12 @@ app.put(`/reviews/:review_id/helpful`, async (req, res) => {
   res.sendStatus(201);
 });
 
-app.listen(process.env.PORT || 3000);
-console.log(`Listening at ${DB_HOST}: ${process.env.DB_PORT || 3000}`);
+app.listen(process.env.PORT || 3000, (err) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(
+      `Listening at ${process.env.DB_HOST}: ${process.env.DB_PORT || 3000}`
+    );
+  }
+});
