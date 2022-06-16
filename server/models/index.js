@@ -53,7 +53,7 @@ export const getMetas = async (productID) => {
         '5', ratings_5
       ),
       'recommend', recommend_count,
-      'characteristics', json_strip_nulls(json_build_object(
+      'characteristics', json_build_object(
         'Fit', json_build_object(
           'id',    fit_id,
           'value', fit_avg
@@ -78,7 +78,7 @@ export const getMetas = async (productID) => {
           'id',    size_id,
           'value', size_avg
         )
-      ))
+      )
     )
   ) FROM metas WHERE prod_id = ${productID}`;
   try {
