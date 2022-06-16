@@ -2,6 +2,7 @@ import pkg from 'pg';
 const { Pool } = pkg;
 
 const pool = new Pool({
+  host: process.env.HOST,
   user: process.env.USER,
   database: 'sdc',
   password: process.env.PASSWORD
