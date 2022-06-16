@@ -1,3 +1,4 @@
+import { getClient } from './db/index.js';
 // require('dotenv').config();
 import dotenv from 'dotenv';
 dotenv.config();
@@ -12,7 +13,7 @@ import {
 
 const app = express();
 app.use(express.json());
-
+getClient().catch((err)=>{console.log(err)});
 app.get('/reviews', async (req, res) => {
   // handle prodID
   if (isNaN(Number(req.query.product_id))) {
@@ -83,6 +84,7 @@ app.get('/reviews/metas', async (req, res) => {
     res.sendStatus(400);
     return;
   }
+	//console.log('check');
   const prodID = Number(req.query.product_id);
   // const productMetas = await getMetas(prodID);
   // if (getMetas) {
@@ -92,7 +94,7 @@ app.get('/reviews/metas', async (req, res) => {
   // }
   getMetas(prodID)
     .then((results) => {
-      console.log(results);
+     // console.log(results);
       res.send(results);
     })
     .catch((err) => console.log(err));
@@ -110,6 +112,10 @@ app.put(`/reviews/:review_id/helpful`, async (req, res) => {
   await updateHelpful(review_id);
   res.sendStatus(201);
 });
+
+app.get('/loaderio-3364e5ade73d58d2f6a0e91c42b038c6', (req, res) => {
+	res.status(200).send('loaderio-3364e5ade73d58d2f6a0e91c42b038c6');
+	});
 
 app.listen(process.env.PORT || 3000, (err) => {
   if (err) {

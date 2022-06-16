@@ -2,21 +2,23 @@ import pkg from 'pg';
 const { Pool } = pkg;
 
 const pool = new Pool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
+  host: "3.141.26.35",
+  user: "michaelzaki",
   database: 'sdc',
-  password: process.env.DB_PASSWORD
+  port: 5432,
+  password: "4140"
 });
 
 export async function query(text, params) {
-  const start = Date.now();
+ // const start = Date.now();
   const res = await pool.query(text);
-  const duration = Date.now() - start;
-  console.log('executed query', { text, duration, rows: res.rowCount });
+  //const duration = Date.now() - start;
+  //console.log('executed query', { text, duration, rows: res.rowCount });
   return res;
 }
 export async function getClient() {
-  const client = await pool.connect();
+	console.log('Connected First'); 
+ const client = await pool.connect();
   console.log('Connected');
   const query = client.query;
   const release = client.release;
