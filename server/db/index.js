@@ -2,10 +2,10 @@ import pkg from 'pg';
 const { Pool } = pkg;
 
 const pool = new Pool({
-  host: process.env.HOST,
-  user: process.env.USER,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
   database: 'sdc',
-  password: process.env.PASSWORD
+  password: process.env.DB_PASSWORD
 });
 
 export async function query(text, params) {

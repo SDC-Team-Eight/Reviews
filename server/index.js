@@ -112,4 +112,4 @@ app.put(`/reviews/:review_id/helpful`, async (req, res) => {
 });
 
 app.listen(process.env.PORT || 3000);
-console.log(`Listening at http://localhost:${process.env.PORT || 3000}`);
+console.log(`Listening at ${DB_HOST}: ${process.env.DB_PORT || 3000}`);
